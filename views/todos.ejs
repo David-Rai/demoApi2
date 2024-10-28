@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Todos</title>
+</head>
+<body>
+    <main class="h-screen w-full flex flex-col bg-slate-200 items-center pt-[20vh]">
+        <h1 class="text-3xl font-bold">Todos</h1>
+            <% todos.forEach((data,index)=>{ %>
+                 <div class="flex  items-center justify-between 
+                 rounded-md shadow-md bg-slate-100 p-3 my-3 w-[60%] ">
+                    <li>
+                        <%= data.todo %>
+                    </li>
+             <button onclick="deleteTodo('<%= data.id %>')">
+                <i class="fa-solid fa-trash-can text-red-600"></i>
+             </button>
+                </div>
+        <%    }) %>
+    </main>
+
+    <<script>
+        async function deleteTodo(id) {
+          try {
+            let response = await fetch(`/delete/${id}`, {
+              method: 'DELETE'
+            });
+      
+            if (!response.ok) {
+              throw new Error(`Error: ${response.statusText}`);
+            }
+      
+            let result = await response.json();
+      
+            // Handle successful deletion
+            if (result.msg) {
+              console.log(result.msg); // Or update the UI, like removing the item from the list
+              document.getElementById(`todo-${id}`).remove(); // Assuming each todo has an ID like "todo-1", "todo-2", etc.
+            }
+          } catch (error) {
+            console.error("Error deleting todo:", error);
+          }
+        }
+      </script>
+      
+</body>
+</html>

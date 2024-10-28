@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <main class="h-screen w-full flex items-center justify-center bg-gray-200">
+      <form
+          class="centerTop bg-gray-100 h-[50vh] p-2
+          items-center shadow-md
+           rounded-md flex flex-col justify-evenly"
+          action="/add"
+          method="post"
+        >
+        <h1 class="text-slate-800">Add new Task</h1>
+          <textarea rol="30" cols="30" required name="todo" class="h-[50%] w-full" > </textarea>
+         
+          <select class="capitalize w-full" name="day" required>
+            <option value="sunday">sunday</option>  
+            <option value="monday">monday</option>
+            <option value="tuesday">tuesday</option>
+            <option value="wenesday">wenesday</option>
+            <option value="thursday">thursday</option>
+            <option value="friday">friday</option>
+            <option value="saturday">saturday</option>  
+            </select>
+          <button type="submit" class="h-[40px] text-white
+          w-[120px] bg-blue-600 rounded-md shadow-sm">ADD</button>
+        </form>
+    </main>
+  </body>
+</html>
